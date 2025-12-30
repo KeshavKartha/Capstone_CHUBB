@@ -1,0 +1,144 @@
+{
+  "generated_at": "2025-12-30T07:15:58.890071Z",
+  "seed": 2025,
+  "total_rows": 100000,
+  "n_parts": 4,
+  "parts": [
+    {
+      "filename": "raw_part_01.parquet",
+      "rows": 25000,
+      "generated_from_row_range": [
+        0,
+        25000
+      ],
+      "schema_columns": [
+        "person_id",
+        "household_id",
+        "geoid",
+        "region_code_legacy",
+        "region_name_reported",
+        "census_year",
+        "date_of_birth",
+        "age",
+        "sex",
+        "ethnicity_code",
+        "education_level",
+        "literacy",
+        "employment_status",
+        "employment_type",
+        "industry_code",
+        "annual_income_local",
+        "marital_status",
+        "migration_status",
+        "arrival_year",
+        "is_head_of_household",
+        "record_confidence_score",
+        "enumeration_source",
+        "last_updated"
+      ],
+      "notes": ""
+    },
+    {
+      "filename": "raw_part_02_gender.drift.parquet",
+      "rows": 25000,
+      "generated_from_row_range": [
+        25000,
+        50000
+      ],
+      "schema_columns": [
+        "person_id",
+        "household_id",
+        "geoid",
+        "region_code_legacy",
+        "region_name_reported",
+        "census_year",
+        "date_of_birth",
+        "age",
+        "gender",
+        "ethnicity_code",
+        "education_level",
+        "literacy",
+        "employment_status",
+        "employment_type",
+        "industry_code",
+        "annual_income_local",
+        "marital_status",
+        "migration_status",
+        "arrival_year",
+        "is_head_of_household",
+        "enumeration_source",
+        "last_updated"
+      ],
+      "notes": "schema drift: 'sex' renamed to 'gender'; missing record_confidence_score"
+    },
+    {
+      "filename": "raw_part_03_admin.parquet",
+      "rows": 25000,
+      "generated_from_row_range": [
+        50000,
+        75000
+      ],
+      "schema_columns": [
+        "person_id",
+        "household_id",
+        "geoid",
+        "region_code_legacy",
+        "region_name_reported",
+        "census_year",
+        "date_of_birth",
+        "age",
+        "sex",
+        "ethnicity_code",
+        "education_level",
+        "literacy",
+        "employment_status",
+        "employment_type",
+        "industry_code",
+        "annual_income_local",
+        "marital_status",
+        "migration_status",
+        "arrival_year",
+        "is_head_of_household",
+        "record_confidence_score",
+        "enumeration_source",
+        "last_updated",
+        "national_id"
+      ],
+      "notes": "admin-like file: includes 'national_id' for ~70% rows"
+    },
+    {
+      "filename": "raw_part_04_income_int.parquet",
+      "rows": 25000,
+      "generated_from_row_range": [
+        75000,
+        100000
+      ],
+      "schema_columns": [
+        "person_id",
+        "household_id",
+        "geoid",
+        "region_code_legacy",
+        "region_name_reported",
+        "census_year",
+        "date_of_birth",
+        "age",
+        "sex",
+        "ethnicity_code",
+        "education_level",
+        "literacy",
+        "employment_status",
+        "employment_type",
+        "industry_code",
+        "income",
+        "marital_status",
+        "migration_status",
+        "arrival_year",
+        "is_head_of_household",
+        "record_confidence_score",
+        "enumeration_source",
+        "last_updated"
+      ],
+      "notes": "income column named 'income' and stored as integers (top-coded); type drift"
+    }
+  ]
+}
