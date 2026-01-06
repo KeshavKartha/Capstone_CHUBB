@@ -4,8 +4,6 @@ A simple, end-to-end demo of a census analytics pipeline built with **Databricks
 
 This repository contains the notebooks, DAG definitions, and supporting artifacts used to ingest synthetic census snapshots, validate and conform the data, produce analytics-ready Gold tables, and surface dashboards for stakeholders.
 
-> **Note:** This README is written for reviewers and implementers. It is intentionally straightforward — no unnecessary jargon.
-
 ![Pipeline Architecture](https://via.placeholder.com/800x400?text=Databricks+Medallion+Architecture+Pipeline)
 
 ## What this project delivers
