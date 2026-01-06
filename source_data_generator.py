@@ -60,31 +60,6 @@ def introduce_typo(s, rng):
         return parts[-1] if parts else s
     return s
 
-def generate_region_lookup(num_regions):
-    """Produce a canonical region lookup for conserving geoid and canonical name."""
-    regions = []
-    for i in range(1, num_regions + 1):
-        name = f"Region-{i:04d}"
-        iso_code = f"RG{i:04d}"
-        parent = (i // 20) if i // 20 > 0 else 0
-        urban_rural = "Urban" if (i % 5 == 0) else "Rural"
-        lat = -10 + (i % 180) * 0.5
-        lon = 30 + (i % 360) * 0.5
-        regions.append({
-            "geoid": i,
-            "iso_admin_code": iso_code,
-            "region_name_standard": name,
-            "parent_geoid": parent,
-            "urban_rural_flag": urban_rural,
-            "latitude_center": lat,
-            "longitude_center": lon
-        })
-    return pd.DataFrame(regions)
-
-# Build canonical region lookup (we will include this in the repo as a separate canonical lookup file)
-region_lookup = generate_region_lookup(NUM_REGIONS)
-region_lookup.to_parquet(os.path.join(OUT_DIR, "region_lookup.parquet"), index=False)
-
 # Plan rows per year with simple weighting (more recent year heavier)
 year_weights = np.array([0.2, 0.3, 0.5])
 year_weights = year_weights / year_weights.sum()
@@ -264,12 +239,6 @@ for part_idx in range(N_PARTS):
     if part_idx == 3:
         part_info["notes"] = "income column named 'income' and stored as integers (top-coded); type drift"
     manifest["parts"].append(part_info)
-
-# Also write a small CSV variant to demonstrate mixed-format ingestion (optional)
-csv_sample = df_full.sample(n=min(2000, len(df_full)), random_state=SEED).copy()
-csv_sample["date_of_birth"] = csv_sample["date_of_birth"].apply(lambda s: datetime.strptime(s, "%Y-%m-%d").strftime("%d/%m/%Y"))
-csv_path = os.path.join(OUT_DIR, "raw_sample_mixed_encoding.csv")
-csv_sample.to_csv(csv_path, index=False, sep=";", encoding="latin-1")
 
 # Write manifest
 with open(os.path.join(OUT_DIR, MANIFEST_NAME), "w", encoding="utf-8") as fh:
