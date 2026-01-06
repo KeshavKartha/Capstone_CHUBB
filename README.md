@@ -36,10 +36,10 @@ This repository contains the notebooks, DAG definitions, and supporting artifact
     Builds all Gold-level fact and dimension tables from conformed Silver data.
 * **`gold_validation`**
     Validates gold tables.
-* **`reset_registry`**
+* **`reset_registry_for_batch`**
     Helper utility to reset `ingestion_status` to Pending on file registry rows for manual retries.
 
-### 2. Airflow DAGs
+### 2. Airflow DAG
 * **`census_full_pipeline`**
     The main end-to-end DAG:
     1.  Preflight checks
@@ -51,8 +51,6 @@ This repository contains the notebooks, DAG definitions, and supporting artifact
     7.  Gold Materialize → Gold Validation
     8. **Branch:** Retry Gold Materialize or continue
     9.  Notify Success 
-* **`ingest_register_raw_files`**
-    A utility DAG to run just the registration notebook (for ad-hoc file registration).
 
 ### 3. Raw Data & Manifest
 *Example Unity Catalog volume structure:*
@@ -110,7 +108,7 @@ This repository contains the notebooks, DAG definitions, and supporting artifact
 ### Option A: Run via Airflow (Production Mode)
 
 1.  Confirm raw files are present in the volume.
-2.  Trigger **`census_full_medallion_pipeline_v2`** from the Airflow UI.
+2.  Trigger **`census_full_pipeline`** from the Airflow UI.
 3.  Watch task logs in Airflow. The DAG uses structured JSON pushed by Databricks tasks to determine branching logic.
 4.  Upon success, open Power BI and connect to `census.gold` tables.
 
