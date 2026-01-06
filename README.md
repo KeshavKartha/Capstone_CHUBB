@@ -11,7 +11,7 @@ This repository contains the notebooks, DAG definitions, and supporting artifact
 * **Data Quality Gates:** Validation checks that strictly gate progress through the pipeline.
 * **Entity Resolution:** Deterministic person deduplication, SCD2-style person history, household aggregates, and lineage tracking.
 * **Advanced Analytics:** Gold-level KPIs and statistical enrichments (income deciles, Gini coefficients, small-area shrinkage).
-* **Orchestration:** Airflow DAGs to manage the full medallion flow and operational tasks.
+* **Orchestration:** Airflow DAG to manage the full medallion flow and operational tasks.
 * **Reporting:** Power BI report files (`.pbix`) that connect to Gold tables for stakeholder dashboards.
 
 ---
