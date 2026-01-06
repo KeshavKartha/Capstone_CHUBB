@@ -64,7 +64,7 @@ This repository contains the notebooks, DAG definitions, and supporting artifact
 ├── raw_part_03_admin.parquet
 ├── raw_part_04_income_int.parquet
 └── manifest.json  
-
+```
 
 ## Delta Tables Created
 
